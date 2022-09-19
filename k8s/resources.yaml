@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-go
+  labels:
+    app: helloworld-go
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld-go
+  template:
+    metadata:
+      labels:
+        app: helloworld-go
+    spec:
+      containers:
+        - name: helloworld-go
+          image: k3d-registry:36091/helloworld-go:v0.1
+          ports:
+            - containerPort: 8000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-go
+spec:
+  selector:
+    app: helloworld-go
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8000
