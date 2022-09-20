@@ -32,14 +32,27 @@ docker build -t k3d-registry:36091/helloworld-go:v0.1 .
 docker push k3d-registry:36091/helloworld-go:v0.1
 ```
 
+## Deploy Gatekeeper templates
+
+```
+# clone opa repo 
+gomplate -f gatekeeper/validated-repo-contraint.yaml | kubectl apply -f -
+```
+
+## Deploy Gatekeeper constraints
+
+```
+kubectl apply -f constraints/validated-repo-constraint.yaml
+```
+
 ## Deploy helloworld pod
 
 ```
 kubectl create -f k8s/helloworld-pod.yaml
 ```
 
-## Deploy Gatekeeper constraints
+## Check Violations
 
 ```
-gomplate -f gatekeeper/validated-repo-contraint.yaml | kubectl apply -f -
+kubectl create -f k8s/helloworld-pod.yaml
 ```
