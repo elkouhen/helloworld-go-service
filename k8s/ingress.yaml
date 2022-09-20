@@ -14,10 +14,3 @@ spec:
                 name: helloworld-go
                 port:
                   number: 8080
-          - path: /v1
-            pathType: Prefix
-            backend:
-              service:
-                name: opa
-                port:
-                  number: 8181
