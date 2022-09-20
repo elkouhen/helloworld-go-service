@@ -11,15 +11,21 @@ k3d cluster create -p "8081:80@loadbalancer" --registry-use k3d-registry:36091
 kubectl cluster-info
 ```
 
-## Deploy resources
+## Deploy gatekeep
 
 ```
-kubectl create -f k8s/resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/master/deploy/gatekeeper.yaml
 ```
 
-## Deploy REGO
+## Build Docker image
 
 ```
-kubectl create configmap example-policy --from-file rego/example.rego
-kubectl create configmap admission-policy --from-file rego/admission.rego
+docker build -t k3d-registry:36091/helloworld-go:v0.1 .
+docker push k3d-registry:36091/helloworld-go:v0.1
+```
+
+## Deploy helloworld pod
+
+```
+kubectl create -f k8s/helloworld-pod.yaml
 ```
