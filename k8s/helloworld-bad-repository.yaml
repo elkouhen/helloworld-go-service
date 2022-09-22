@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworld-bad-repository
+  labels:
+    app: helloworld-bad-repository
+spec:
+  containers:
+    - name: helloworld-go
+      image: xxxk3d-registry:36091/helloworld-go:v0.1
+      ports:
+        - containerPort: 8000

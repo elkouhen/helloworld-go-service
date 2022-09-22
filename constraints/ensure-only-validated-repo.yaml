@@ -1,0 +1,14 @@
+--- 
+
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: EnsureOnlyValidatedRepo
+metadata:
+  name: ensureonlyvalidatedrepo
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    repo: "k3d-registry"
