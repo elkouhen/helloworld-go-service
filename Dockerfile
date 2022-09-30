@@ -2,8 +2,8 @@ FROM golang:1.16-alpine
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY cmd/helloworld-go-service/ ./
+COPY go.mod go.mod
+COPY main.go main.go
 
 RUN go mod download
 
