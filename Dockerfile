@@ -9,4 +9,6 @@ RUN go mod download
 
 RUN go build -o /helloworld
 
+EXPOSE 8000
+
 CMD [ "/helloworld" ]
