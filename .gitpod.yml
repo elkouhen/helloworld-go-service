@@ -8,3 +8,6 @@ tasks:
     command: go run
 
 
+ports: 
+  - name: helloworld_service
+    port: 8000
