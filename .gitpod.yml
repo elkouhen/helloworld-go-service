@@ -4,8 +4,9 @@
 
 
 tasks:
-  - init: go get && go build ./... && go test ./...
-    command: go run main.go
+  - before: go install github.com/cosmtrek/air@latest
+    init: go get && go build ./... && go test ./...
+    command: air server
 
 
 ports: 
